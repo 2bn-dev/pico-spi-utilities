@@ -64,8 +64,8 @@ void __not_in_flash_func(flash_wait_done)(spi_inst_t *spi, uint cs_pin) {
 }
 
 void printbuf(uint8_t buf[FLASH_PAGE_SIZE]) {
-	for (int i = 0; i < FLASH_PAGE_SIZE; ++i) {
-		printf("%s", (unsigned char) buf[i]);
+	for (int i = 0; i < FLASH_PAGE_SIZE; i++) {
+		printf("%c", (char) buf[i]);
 	}
 }
 
@@ -90,9 +90,11 @@ int main(){
 	uint8_t page_buf[FLASH_PAGE_SIZE];    
 	uint32_t target_addr = 0;
 
-	memset(&page_buf, 0x0, FLASH_PAGE_SIZE);
-	flash_read(spi0, SPI_CSN_PIN, target_addr, page_buf, FLASH_PAGE_SIZE);
-	printbuf(page_buf);
+	for(target_addr = 0; target_addr < FLASH_TOTAL_SIZE; target_addr += FLASH_PAGE_SIZE){
+		memset(&page_buf, 0x0, FLASH_PAGE_SIZE);
+		flash_read(spi0, SPI_CSN_PIN, target_addr, page_buf, FLASH_PAGE_SIZE);
+		printbuf(page_buf);
+	}
 
 
 	return 0;
