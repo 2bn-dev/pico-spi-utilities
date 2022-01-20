@@ -5,6 +5,17 @@ This is a set of utilities that allow you to read, write or erase SPI flash chip
 While the pins are configurable in the code, you must use specific pins that correlate to hardware SPI functionality within the RP2040.
 
 
+### Building
+
+```
+mkdir build
+cd build
+cmake ..
+make -j 8
+```
+
+
+
 
 ### Using
 After flashing appropriate UF2 file
