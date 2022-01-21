@@ -21,9 +21,12 @@ int main(){
 	uint8_t page_buf[FLASH_PAGE_SIZE];    
 	uint32_t target_addr = 0;
 
-	for(target_addr = 0; target_addr < FLASH_TOTAL_SIZE; target_addr += FLASH_PAGE_SIZE){
+	for(target_addr = 0; target_addr < FLASH_TOTAL_SIZE ; target_addr += FLASH_PAGE_SIZE){
+		//printf("\r\nAddr %08x\r\n", target_addr);
 		memset(&page_buf, 0x0, FLASH_PAGE_SIZE);
+		flash_wait_done(spi0, SPI_CSN_PIN);
 		flash_read(spi0, SPI_CSN_PIN, target_addr, page_buf, FLASH_PAGE_SIZE);
+		flash_wait_done(spi0, SPI_CSN_PIN);
 		printbuf(page_buf);
 	}
 
