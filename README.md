@@ -43,3 +43,12 @@ You should see messages in the minicom session as it erases.
 
 
 ##### spi_writer
+
+SPI Writer will erase AND write data from STDIN to the SPI flash, starting at addr 0, it's intended to
+
+
+```
+stty -F /dev/ttyACM0 raw 115200; cat firmware.output.file.bin > /dev/ttyACM0
+#(second window, within 1s)
+cat /dev/ttyACM0
+```
