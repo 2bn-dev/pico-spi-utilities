@@ -16,10 +16,17 @@ pico_sdk_init()
 
 add_executable(spi_reader
 	spi_reader.c
+	spi.c
 )
 
 add_executable(spi_eraser
 	spi_eraser.c
+	spi.c
+)
+
+add_executable(spi_writer
+	spi_writer.c
+	spi.c
 )
 
 
@@ -32,7 +39,7 @@ target_link_libraries(
 	pico_platform
 	pico_stdio
 	pico_bootsel_via_double_reset
-	)
+)
 
 target_link_libraries(
 	spi_eraser
@@ -42,7 +49,17 @@ target_link_libraries(
 	pico_platform
 	pico_stdio
 	pico_bootsel_via_double_reset
-	)
+)
+
+target_link_libraries(
+	spi_writer
+	pico_stdlib
+	hardware_spi
+	pico_time
+	pico_platform
+	pico_stdio
+	pico_bootsel_via_double_reset
+)
 
 pico_enable_stdio_usb(spi_reader 1)
 pico_enable_stdio_uart(spi_reader 0)
@@ -50,10 +67,12 @@ pico_enable_stdio_uart(spi_reader 0)
 pico_enable_stdio_usb(spi_eraser 1)
 pico_enable_stdio_uart(spi_eraser 0)
 
-
+pico_enable_stdio_usb(spi_writer 1)
+pico_enable_stdio_uart(spi_writer 0)
 
 # create map/bin/hex/uf2 file in addition to ELF.
 pico_add_extra_outputs(spi_reader)
 pico_add_extra_outputs(spi_eraser)
+pico_add_extra_outputs(spi_writer)
 
 
