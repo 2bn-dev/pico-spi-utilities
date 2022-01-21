@@ -1,4 +1,5 @@
 #define PICO_STDIO_DEFAULT_CRLF 0
+#define PICO_STDIO_ENABLE_CRLF_SUPPORT 0
 
 #include <stdlib.h>
 #include <string.h>

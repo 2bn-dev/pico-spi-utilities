@@ -98,9 +98,9 @@ void printbuf(uint8_t buf[FLASH_PAGE_SIZE]) {
 
 void printbuf_hex(uint8_t buf[FLASH_PAGE_SIZE]){
 	for (int i=0; i < FLASH_PAGE_SIZE; i++){
-		printf("%d ", (char) buf[i]);
+		printf("%02x ", (char) buf[i]);
 		if(i%16 ==0){
-			printf("\n");
+			printf("\r\n");
 		}
 	}
 }
