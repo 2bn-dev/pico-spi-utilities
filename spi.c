@@ -1,5 +1,6 @@
 #include "spi.h"
 
+
 static inline void cs_select(uint cs_pin) {
 	asm volatile("nop \n nop \n nop"); // FIXME
 	gpio_put(cs_pin, 0);
@@ -98,10 +99,10 @@ void printbuf(uint8_t buf[FLASH_PAGE_SIZE]) {
 
 void printbuf_hex(uint8_t buf[FLASH_PAGE_SIZE]){
 	for (int i=0; i < FLASH_PAGE_SIZE; i++){
-		printf("%02x ", (char) buf[i]);
-		if(i%16 ==0){
+		if(i%16 ==0 && i != 0){
 			printf("\r\n");
 		}
+		printf("%02x ", buf[i]);
 	}
 }
 
