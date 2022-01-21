@@ -70,6 +70,11 @@ pico_enable_stdio_uart(spi_eraser 0)
 pico_enable_stdio_usb(spi_writer 1)
 pico_enable_stdio_uart(spi_writer 0)
 
+
+add_compile_definitions(PICO_UART_ENABLE_CRLF_SUPPORT=0)
+add_compile_definitions(PICO_STDIO_ENABLE_CRLF_SUPPORT=0)
+add_compile_definitions(PICO_STDIO_DEFAULT_CRLF=0)
+
 # create map/bin/hex/uf2 file in addition to ELF.
 pico_add_extra_outputs(spi_reader)
 pico_add_extra_outputs(spi_eraser)

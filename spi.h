@@ -1,6 +1,3 @@
-#define PICO_STDIO_DEFAULT_CRLF 0
-#define PICO_STDIO_ENABLE_CRLF_SUPPORT 0
-
 #include <stdlib.h>
 #include <string.h>
 #include <inttypes.h>
@@ -10,6 +7,7 @@
 #include "hardware/gpio.h"
 
 #include "pico/stdio_usb.h"
+
 
 
 #define FLASH_PAGE_SIZE         256
@@ -30,8 +28,6 @@
 #define SPI_TX_PIN              3
 #define SPI_SCK_PIN             2
 #define SPI_CSN_PIN             1
-
-
 
 static inline void cs_select(uint cs_pin);
 static inline void cs_deselect(uint cs_pin);
